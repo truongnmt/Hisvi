@@ -5,13 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "devise"
+gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.2"
 gem "sqlite3"
-gem "puma", "~> 3.7"
-gem "devise"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "factory_girl_rails", "~> 4.0"
+  gem "faker"
+  gem "rspec-rails", "~> 3.6"
 end
 
 group :development do
@@ -23,13 +26,14 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :test do
+  gem "brakeman", require: false
+  gem "bundler-audit"
+  gem "database_cleaner"
+  gem "rails_best_practices"
+  gem "reek"
+  gem "rspec-activemodel-mocks"
   gem "rspec-collection_matchers"
   gem "rubocop", require: false
   gem "rubocop-checkstyle_formatter", require: false
-  gem "rails_best_practices"
-  gem "brakeman", require: false
-  gem "bundler-audit"
-  gem "reek"
-  gem "rspec-activemodel-mocks"
-  gem "rspec-rails", "~> 3.6"
+  gem "shoulda-matchers", "~> 3.1"
 end
