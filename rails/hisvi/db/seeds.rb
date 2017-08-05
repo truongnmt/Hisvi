@@ -1,7 +1,6 @@
-email = Faker::Internet.email
 p "seeding users"
-User.create! email: email,
-  password: "123123",
+User.create! email: "admin@admin.com",
+  password: "admin123",
   reset_password_sent_at: "",
   remember_created_at: "",
   last_sign_in_at: "",
@@ -11,8 +10,8 @@ User.create! email: email,
   is_admin: true
 
 99.times do |n|
-  email2 = Faker::Internet.email
-  User.create! email: email2,
+  email = Faker::Internet.email
+  User.create! email: email,
     password: "password",
     reset_password_sent_at: "",
     remember_created_at: "",
