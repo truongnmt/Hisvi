@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    email { Faker::Internet.email }
+    email {Faker::Internet.email}
     password "password"
+    password_confirmation "password"
     reset_password_token nil
     reset_password_sent_at nil
     remember_created_at nil
@@ -9,7 +10,8 @@ FactoryGirl.define do
     last_sign_in_at nil
     current_sign_in_ip nil
     last_sign_in_ip nil
-    bio { Faker::HarryPotter.quote }
+    bio {Faker::HarryPotter.quote}
     is_admin false
+    username {Faker::Name.name}
   end
 end
