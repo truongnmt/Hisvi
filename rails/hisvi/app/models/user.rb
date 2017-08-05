@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  acts_as_token_authenticatable
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
@@ -14,8 +14,13 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
-
+  
   def follow other_user
     following << other_user
+  end
+
+  def generate_new_authentication_token
+    token = User.generate_unique_secure_token
+    self.update_attributes authentication_token: token
   end
 end
