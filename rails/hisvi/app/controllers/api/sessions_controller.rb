@@ -6,12 +6,12 @@ class Api::SessionsController < Devise::SessionsController
   before_action :ensure_params_exist, :load_user, only: :create
   before_action :valid_token, only: :destroy
 
+  attr_reader :user
+
   def create
     if user.valid_password? sign_in_params[:password]
       sign_in "user", user
-      messages = I18n.t "sessions.signed_in"
-      data = {user: user}
-      json_response messages, data
+      json_response I18n.t("devise.sessions.signed_in"), {user: user}, :ok
     else
       invalid_login_attempt
     end
@@ -20,8 +20,8 @@ class Api::SessionsController < Devise::SessionsController
   def destroy
     sign_out user
     user.generate_new_authentication_token
-    messages = I18n.t "sessions.signed_out"
-    json_response messages, {}
+    messages = I18n.t "devise.sessions.signed_out"
+    json_response messages, {}, :ok
   end
 
   private
@@ -32,13 +32,14 @@ class Api::SessionsController < Devise::SessionsController
 
   def ensure_params_exist
     return if params[:sign_in].present?
+
     messages = I18n.t "api.missing_params"
     json_response messages, {}, :failure
   end
 
   def invalid_login_attempt
-    messages = I18n.t "devise.failure.invalid", authentication_keys: "email"
-    json_response messages, {}, :failure
+    json_response I18n.t("devise.failure.invalid",
+      authentication_keys: "email"), {}, :unauthorized
   end
 
   def load_user

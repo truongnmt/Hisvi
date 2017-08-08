@@ -2,14 +2,24 @@ en:
   api:
     missing_params: "Missing parameter"
     invalid_token: "Invalid token"
+    invalid_permission: "Invalid permission"
   messages:
     not_found: "%{model_name} couldn't be found"
   users:
+    index:
+      success: "Index user success"
     show:
       success: "Show user success"
+    update:
+      success: "Update successfully"
+      fail: "Update failed"
+    destroy:
+      success: "Delete successfully"
+      fail: "Delete failed"
     messages:
       user_not_found: "User not found"
-  sessions:
-    signed_in: "Signed in successfully."
-    signed_out: "Signed out successfully."
-    already_signed_out: "Signed out successfully."
+  devise:
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."

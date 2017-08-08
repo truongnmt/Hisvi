@@ -8,6 +8,6 @@ class CreateMoments < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :moments, :story_id
+    # add_index :moments, :story_id
   end
 end
