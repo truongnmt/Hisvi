@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :story do
-    user_id nil
-    category_id nil
-    moments nil
+    user_id 1
+    category_id 1
     title { Faker::VentureBros.organization }
     is_public false
   end

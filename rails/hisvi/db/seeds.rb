@@ -7,7 +7,8 @@ User.create! email: "admin@admin.com",
   current_sign_in_ip: "",
   last_sign_in_ip: "",
   bio: Faker::HarryPotter.quote,
-  is_admin: true
+  is_admin: true,
+  username: Faker::Name.name
 
 99.times do |n|
   email = Faker::Internet.email
@@ -19,7 +20,8 @@ User.create! email: "admin@admin.com",
     current_sign_in_ip: "",
     last_sign_in_ip: "",
     bio: Faker::HarryPotter.quote,
-    is_admin: false
+    is_admin: false,
+    username: Faker::Name.name
 end
 
 p "seeding categories"

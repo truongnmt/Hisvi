@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :category do
-    name ""
+    name {Faker::VentureBros.organization}
   end
 end
