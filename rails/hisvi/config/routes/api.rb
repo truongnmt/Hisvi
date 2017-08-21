@@ -11,5 +11,7 @@ namespace :api, defaults: {format: "json"} do
     constraints: ApiConstraints.new(version: 1, default: true) do
       resources :users, only: %i(index show update destroy)
       resources :stories
+      post "like", to: "like#create"
+      delete "dislike", to: "like#destroy"
     end
 end

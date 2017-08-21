@@ -38,3 +38,10 @@ en:
     destroy:
      success: "Destroy successfully"
      fail: "Destroy failed"
+  like:
+    create:
+      success: "Create sussessfully"
+      fail: "Create failed"
+    destroy:
+      success: "Destroy successfully"
+      fail: "Destroy failed"
