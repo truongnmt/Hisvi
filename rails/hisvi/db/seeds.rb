@@ -10,6 +10,17 @@ User.create! email: "admin@admin.com",
   is_admin: true,
   username: Faker::Name.name
 
+User.create! email: "hisvi@hisvi.com",
+  password: "123123",
+  reset_password_sent_at: "",
+  remember_created_at: "",
+  last_sign_in_at: "",
+  current_sign_in_ip: "",
+  last_sign_in_ip: "",
+  bio: Faker::HarryPotter.quote,
+  is_admin: false,
+  username: Faker::Name.name
+
 99.times do |n|
   email = Faker::Internet.email
   User.create! email: email,

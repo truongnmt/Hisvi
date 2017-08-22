@@ -7,7 +7,7 @@ en:
     not_found: "%{model_name} couldn't be found"
   users:
     index:
-      success: "Index user success"
+      success: "Index users success"
     show:
       success: "Show user success"
     update:
@@ -45,3 +45,18 @@ en:
     destroy:
       success: "Destroy successfully"
       fail: "Destroy failed"
+  moments:
+    index:
+      success: "Index moments success"
+    create:
+      success: "Create moment success"
+    show:
+      success: "Show moment success"
+    update:
+      success: "Update successfully"
+      fail: "Update failed"
+    destroy:
+      success: "Delete successfully"
+      fail: "Delete failed"
+    messages:
+      moment_not_found: "Moment not found"

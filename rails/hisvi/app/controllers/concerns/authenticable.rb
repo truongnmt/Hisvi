@@ -10,7 +10,7 @@ module Authenticable
     return if current_user
     render json: {
       messages: I18n.t("devise.failure.unauthenticated")
-    }, status: :failure
+    }, status: :unauthorized
   end
 
   def user_signed_in?
