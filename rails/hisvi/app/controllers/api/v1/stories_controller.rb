@@ -1,19 +1,20 @@
 class Api::V1::StoriesController < Api::BaseController
+  before_action :find_object, only: %i(show update destroy)
+  before_action :authenticate_with_token!, only: %i(create update destroy)
+
+  attr_reader :story, :stories
+
   def index
-    @stories = current_user.stories
-    json_response I18n.t("stories.index.success"), {stories: @stories}, :ok
+    stories = Story.all
+    white_list = [:id, :category, :title, :user, :is_public, :image]
+    json_stories = parse_json stories, white_list
+    json_response I18n.t("stories.index.success"), {stories: json_stories}
   end
 
   def create
     story = current_user.stories.build story_params
-    moments = story.moments.build moments_params
-
-    if moments.save
-      if story.save
-        message = I18n.t("stories.create.success")
-      else
-        message = I18n.t("stories.create.error")
-      end
+    if story.save
+      message = I18n.t("stories.create.success")
     else
       message = I18n.t("stories.create.error")
     end
@@ -21,8 +22,6 @@ class Api::V1::StoriesController < Api::BaseController
   end
 
   def show
-    story = current_user.stories.find_by id: params[:id]
-
     if story
       json_response I18n.t("stories.show.success"), {story: story}, :ok
     else
@@ -44,15 +43,14 @@ class Api::V1::StoriesController < Api::BaseController
   end
 
   def destroy
-    story = current_user.stories.find_by id: params[:id]
-
     if story
       if story.destroy
         json_response I18n.t("stories.destroy.success"), {story: story}, :ok
       else
         json_response I18n.t("stories.destroy.fail"), {}, :unprocessable_entity
       end
-    else invalid_permission
+    else
+      invalid_permission
     end
   end
 
@@ -60,10 +58,10 @@ class Api::V1::StoriesController < Api::BaseController
 
   def story_params
     params.require(:story).permit :category_id, :title,
-      :is_public
+      :is_public, :image
   end
 
   def moments_params
-    params.require(:moments).permit :content, :is_completed
+    params.require(:moments).permit :content, :is_completed, :image
   end
 end

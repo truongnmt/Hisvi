@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: haspinu3e
+  api_key: '466939421546773'
+  api_secret: 6FY-tCEoCrB_Pof_t47Lzq-jwNs
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: haspinu3e
+  api_key: '466939421546773'
+  api_secret: 6FY-tCEoCrB_Pof_t47Lzq-jwNs
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: haspinu3e
+  api_key: '466939421546773'
+  api_secret: 6FY-tCEoCrB_Pof_t47Lzq-jwNs
+  enhance_image_tag: true
+  static_image_support: false

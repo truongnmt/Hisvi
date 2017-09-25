@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170805085504) do
+ActiveRecord::Schema.define(version: 20170925070420) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170805085504) do
     t.boolean "is_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image"
     t.index ["story_id"], name: "index_moments_on_story_id"
   end
 
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170805085504) do
     t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image"
     t.index ["category_id"], name: "index_stories_on_category_id"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end

@@ -49,7 +49,8 @@ users = User.order(:created_at).take 10
   title = Faker::VentureBros.organization
   users.each { |user|
     title = Faker::VentureBros.organization
-    story = user.stories.create!(category_id: rand(1..5),
+    story = user.stories.create!(
+      category_id: rand(1..5),
       title: title,
       is_public: [true, false].sample)
 

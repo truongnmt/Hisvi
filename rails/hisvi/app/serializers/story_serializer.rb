@@ -1,8 +1,13 @@
 class StorySerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :title, :is_public
+  attributes :id, :title, :image, :is_public
 
   belongs_to :category, if: ->{is_in_white_list?(:category)}
+  belongs_to :user, if: ->{is_in_white_list?(:user)}
   has_many :moments, if: ->{is_in_white_list?(:moments)}
+
+  def image
+    object.image_url
+  end
 
   def is_in_white_list? attr
     white_list = @instance_options[:white_list]

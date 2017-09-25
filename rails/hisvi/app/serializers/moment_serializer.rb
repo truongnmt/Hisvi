@@ -1,9 +1,11 @@
 class MomentSerializer < ActiveModel::Serializer
-  include ActionView::Helpers::UrlHelper
-
-  attributes :id, :story_id, :content, :is_completed
+  attributes :id, :story_id, :content, :image, :is_completed
 
   belongs_to :story, if: ->{is_in_white_list?(:story)}
+
+  def image
+    object.image_url
+  end
 
   def story
     {

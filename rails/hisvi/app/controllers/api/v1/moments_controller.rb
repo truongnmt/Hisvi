@@ -7,15 +7,14 @@ class Api::V1::MomentsController < Api::BaseController
 
   def index
     @moments = Moment.all
-    white_list = %i(id story_id content story)
-    json_moments = parse_json moments, white_list
+    # white_list = %i(id story_id content story)
+    json_moments = parse_json moments
     json_response I18n.t("moments.index.success"), {moment: json_moments}, :ok
   end
 
   def create
     moment = Moment.new moment_params
     moment.story_id = params[:story_id]
-
     if moment.save
       messages = I18n.t "moments.create.success"
       json_moment = parse_json moment
@@ -45,7 +44,7 @@ class Api::V1::MomentsController < Api::BaseController
   private
 
   def moment_params
-    params.require(:moment).permit :content, :is_completed
+    params.require(:moment).permit :content, :image, :is_completed
   end
 
   def updated_successfully
